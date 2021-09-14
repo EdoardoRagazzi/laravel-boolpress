@@ -20,12 +20,18 @@
         <label for="title" >Write Title</label>
 
         {{-- Remember method old so you don't delete the values already insert / doesn't delete your data --}}
-        <input type="title" name="title" class="form-control" id="title" value="{{old('title')}}" >
+
+        {{-- You can also use the error class that put you an exclamation warning with is-invalid / or you can add a message  --}}
+        <input type="title" name="title" class="form-control 
+        @error('title')
+        is-invalid
+        @enderror
+        " id="title" value="{{old('title')}}" >
    
       </div>
       <div class="mb-3">
         <label for="descrizione" class="form-label">Descrizione</label>
-        <textarea class="form-control" type="text" name="content" cols="30" rows="10"  id="descrizione" ></textarea>
+        <textarea class="form-control" type="text" name="content" cols="30" rows="10"  id="descrizione" >{{old('content')}}</textarea>
         
       </div>
       <button type="submit" class="btn btn-success">Submit</button>

@@ -55,11 +55,11 @@ class PostController extends Controller
 
         $slug= Str::slug($data['title'], '-');
         $slugbase = $slug;
-        $slugpresente = Post::where('slug', $slug)->first();
+        $slugpresent = Post::where('slug', $slug)->first();
         $counter=1;
            while($slugpresent){
                $slug = $slugbase . '-' . $counter;
-               $slugpresente = Post::where('slug',$slug)->first();
+               $slugpresent = Post::where('slug',$slug)->first();
                $counter++;
            }
         // Create slug of title because there isn't on page Admin.Posts.Create 
@@ -120,7 +120,7 @@ class PostController extends Controller
            $counter=1;
            while($slugpresent){
                $slug = $slugbase . '-' . $counter;
-               $slugpresente = Post::where('slug',$slug)->first();
+               $slugpresent = Post::where('slug',$slug)->first();
                $counter++;
            }
            $data['slug'] = $slug;
