@@ -5,12 +5,14 @@
 
 <div class="container">
   {{-- Alert Session-> On PostsControllerPage Insert With Method --}}
-          @if (session('update'))
-           <div class="alert alert-success">
-             {{session('update')}}
-           </div>
-             
-           @endif
+  <p>
+    @if (session('update'))
+    <div class="alert alert-success">
+      {{session('update')}}
+    </div>
+      
+    @endif
+  </p>
     <table class="table">
         <thead>
           <tr>
@@ -42,6 +44,9 @@
         
         </tbody>
       </table>
+      <div>
+        {{$posts->links()}}
+    </div>
 </div>
 
 @endsection

@@ -17,7 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // Just 4 Posts trough link() method on index.blade.php
+        $posts = Post::paginate(4);
+        // All page 
+        // $posts = Post::all();
         return view('admin.posts.index', compact('posts'));
     }
 
