@@ -76,8 +76,8 @@
             <div class="row justify-content-center">
                 <nav class="nav flex-column d-inline-block col-2 ">
                     <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-home"></i> Dashboard</a>
-                    <a class="nav-link" aria-current="page" href="#"><i class="fa fa-home"></i> Posts</a>
-                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Users</a>
+                    <a class="nav-link" aria-current="page" href="{{route('admin.posts.index')}}"><i class="fa fa-home"></i> Posts</a>
+                    <a class="nav-link" href="{{route('admin.posts.create')}}"><i class="fa fa-home"></i> Create</a>
                     <a class="nav-link"><i class="fa fa-home"></i> Categories</a>
                 </nav>
                 @endauth

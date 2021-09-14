@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Post;
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -38,7 +39,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Get the data
+        $data = $request->all();
+        // create a new instance
+        $newPost = new Post();
+        // Create slug of title because there isn't on page Admin.Posts.Create 
+        $newPost->slug = Str::slug($data['title'], '-');
+        // Fill the data on newPost instance
+        $newPost->fill($data);
+        // Must save the data
+        $newPost->save();
+
+        return redirect()->route('admin.posts.index');
+
+
     }
 
     /**

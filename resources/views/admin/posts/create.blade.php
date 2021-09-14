@@ -2,14 +2,21 @@
 @section('content')
 
 <div class="container">
-    <div class="form-floating mb-3">
-        <input type="title" class="form-control" id="title" >
-        <label for="title">Write Title</label>
+    <form action="{{ route('admin.posts.store')}}" method="post">
+        @csrf
+
+    <div class="mb-3">
+        <label for="title" >Write Title</label>
+        <input type="title" name="title" class="form-control" id="title" >
+   
       </div>
-      <div class="form-floating">
-        <input type="text" class="form-control" id="descrizione" >
-        <label for="descrizione">Descrizione</label>
+      <div class="mb-3">
+        <label for="descrizione" class="form-label">Descrizione</label>
+        <textarea class="form-control" type="text" name="content" cols="30" rows="10"  id="descrizione" ></textarea>
+        
       </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
 </div>
 
 
