@@ -18,7 +18,9 @@
 
     <div class="mb-3">
         <label for="title" >Write Title</label>
-        <input type="title" name="title" class="form-control" id="title" >
+
+        {{-- Remember method old so you don't delete the values already insert / doesn't delete your data --}}
+        <input type="title" name="title" class="form-control" id="title" value="{{old('title')}}" >
    
       </div>
       <div class="mb-3">
