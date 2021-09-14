@@ -27,6 +27,9 @@
         is-invalid
         @enderror
         " id="title" value="{{old('title')}}" >
+        @error('title')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
    
       </div>
       <div class="mb-3">

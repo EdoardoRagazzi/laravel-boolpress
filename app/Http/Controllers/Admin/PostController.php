@@ -106,6 +106,10 @@ class PostController extends Controller
      */
     public function update(Request $request,Post $post)
     {
+        $request->validate([
+            'title'=> 'required|max:255',
+            'content'=> 'required'
+        ]);
        $data = $request->all();
 
        if($data['title'] != $post->title){
