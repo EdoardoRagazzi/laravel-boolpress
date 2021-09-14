@@ -72,17 +72,21 @@
             </div>
         </nav>
         @auth
-        <nav class="nav flex-column">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-            <a class="nav-link" href="#">Link</a>
-            <a class="nav-link" href="#">Link</a>
-            <a class="nav-link disabled">Disabled</a>
-          </nav>
-        @endauth
-        
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <nav class="nav flex-column d-inline-block col-2 ">
+                    <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-home"></i> Dashboard</a>
+                    <a class="nav-link" aria-current="page" href="#"><i class="fa fa-home"></i> Posts</a>
+                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Users</a>
+                    <a class="nav-link"><i class="fa fa-home"></i> Categories</a>
+                </nav>
+                @endauth
+                
+                    <main class="py-4 col-10">
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
     </div>
 </body>
 </html>
