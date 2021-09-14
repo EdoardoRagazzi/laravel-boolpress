@@ -4,6 +4,13 @@
 
 
 <div class="container">
+  {{-- Alert Session-> On PostsControllerPage Insert With Method --}}
+          @if (session('update'))
+           <div class="alert alert-success">
+             {{session('update')}}
+           </div>
+             
+           @endif
     <table class="table">
         <thead>
           <tr>
