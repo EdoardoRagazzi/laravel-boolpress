@@ -6,11 +6,16 @@
 <div class="container">
   {{-- Alert Session-> On PostsControllerPage Insert With Method --}}
   <p>
-    @if (session('update'))
+    @if (session('updated'))
     <div class="alert alert-success">
-      {{session('update')}}
+      {{session('updated')}}
     </div>
       
+    @endif
+    @if (session('delete'))
+    <div class="alert alert-success">
+      {{session('delete')}}
+    </div>
     @endif
   </p>
     <table class="table">
@@ -30,7 +35,7 @@
                 <td>
                     <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Show</a>
                     <a href="{{ route('admin.posts.edit', $post->id)}}" class="btn btn-warning">Edit</a>
-                    <form action="" method="post" class="d-inline-block">
+                    <form action="{{route('admin.posts.destroy',$post->id)}}" method="post" class="d-inline-block">
                         @csrf
                         @method('DELETE')  
                         <input type="submit" value="delete" class="btn btn-danger"> 

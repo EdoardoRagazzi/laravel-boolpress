@@ -42,13 +42,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+    // Validation Data
+    $request->validate([
+        'title'=> 'required|max:255',
+        'content'=> 'required'
+    ]);
 
         // Get the data
         $data = $request->all();
         // create a new instance
         $newPost = new Post();
+
+        $slug= Str::slug($data['title'], '-');
+        $slugbase = $slug;
+        $slugpresente = Post::where('slug', $slug)->first();
+        $counter=1;
+           while($slugpresent){
+               $slug = $slugbase . '-' . $counter;
+               $slugpresente = Post::where('slug',$slug)->first();
+               $counter++;
+           }
         // Create slug of title because there isn't on page Admin.Posts.Create 
-        $newPost->slug = Str::slug($data['title'], '-');
+        $newPost->slug = $slug;
         // Fill the data on newPost instance
         $newPost->fill($data);
         // Must save the data
@@ -78,6 +93,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+       
         return view('admin.posts.edit', compact('post'));
     }
 
@@ -92,11 +108,27 @@ class PostController extends Controller
     {
        $data = $request->all();
 
-       $data['slug'] = Str::slug($data['title'], '-');
+       if($data['title'] != $post->title){
+
+           $slug = Str::slug($data['title'], '-');
+        //    Remember variables di appoggio
+
+           $slugbase = $slug;
+// rivedere i concetti di slugpresent valore booleano
+           $slugpresent = Post::where('slug', $slug)->first();
+           
+           $counter=1;
+           while($slugpresent){
+               $slug = $slugbase . '-' . $counter;
+               $slugpresente = Post::where('slug',$slug)->first();
+               $counter++;
+           }
+           $data['slug'] = $slug;
+       }
 
        $post->update($data);
 
-       return redirect()->route('admin.posts.index')->with('updated', 'Update Element'); 
+       return redirect()->route('admin.posts.index')->with('updated', 'Update Element:'.' '. $post->id); 
     }
 
     /**
@@ -105,8 +137,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('delete', 'Delete Element'. ' '  . $post->id);
     }
 }
